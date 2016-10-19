@@ -22,6 +22,25 @@ void create_dir(char *dir)
     }
 }
 
+int has_hangul(char *input_text)
+{
+	int is_hangul = 0;
+	char *tmp_text;
+	
+	tmp_text = input_text;
+	
+	while(*tmp_text){
+		char letter = *tmp_text;
+        if((letter & 0x80))
+        {
+        	is_hangul = 1;           
+        	break;         
+        }
+		tmp_text++;
+	}
+	return is_hangul;
+}
+
 void load_ini(const char *szFileName)
 {
 	ini = iniparser_load((char*)szFileName);
@@ -107,13 +126,30 @@ void close_iconv()
 	iconv_close(conv_st);
 }
 
+//http://www.codeproject.com/Tips/672470/Simple-Character-Encoding-Detection
+//0  = UTF-8
+//1  = UTF-16BE
+//2  = UTF-16LE
+//3  = UTF-32BE
+//4  = UTF-32LE 
+int String_GetEncoding(char *string)
+  {
+    unsigned c, i = 0, flags = 0;
+    while (string[i] | string[i + 1] | string[i + 2] | string[i + 3])
+      flags = (c = string[i++]) ? flags | ((!(flags % 4) && 
+      c > 0x7F) << 3) : flags | 1 | (!(i & 1) << 1) 
+      | ((string[i] == 0) << 2);
+    return (flags & 1) + ((flags & 2) != 0) + 
+    ((flags & 4) != 0) + ((flags & 8) != 0);
+  }   
+
 int conv_utf8_kr(char *inStr, char **output_buf_ptr)
 {
 	int ret;
 	char tmpbuf[1024];
 	size_t in_size, out_size;
 	memset(tmpbuf, 0x00, sizeof(tmpbuf));
-	
+	trim(inStr);
 	in_size = strlen(inStr) +1;
 	//printf("input size[%d]\n", in_size);
 
@@ -121,10 +157,27 @@ int conv_utf8_kr(char *inStr, char **output_buf_ptr)
 	//out_size = sizeof(utf_buf);
 	
 	ret = convStr( tmpbuf, &out_size, inStr, in_size, "UTF-8", "EUC-KR" );
-	//convStr( tmpbuf, &out_size, inStr, in_size, "EUC-KR",  "UTF-8");
-	//convStr( output_buf_ptr, &out_size, szResult, in_size, "UTF-8", "UTF-8" );
+	memcpy(*output_buf_ptr, tmpbuf, strlen(tmpbuf) + 1);
+	//if(szResult) free(szResult), szResult=NULL;
+		
+	return ret;
+}
+
+int conv_kr_utf8(char *inStr, char **output_buf_ptr)
+{
+	int ret;
+	char tmpbuf[1024];
+	size_t in_size, out_size;
+	memset(tmpbuf, 0x00, sizeof(tmpbuf));
 	
-	//printf("in[%s] ---> out[%s] \n", szResult, output_buf_ptr);
+	in_size = strlen(inStr) +1;
+	printf("input size[%d]\n", in_size);
+
+	out_size = sizeof(tmpbuf);
+	//out_size = sizeof(utf_buf);
+	
+	ret = convStr( tmpbuf, &out_size, inStr, in_size, "UTF-8", "EUC-KR" );
+	
 	memcpy(*output_buf_ptr, tmpbuf, strlen(tmpbuf) + 1);
 	//if(szResult) free(szResult), szResult=NULL;
 		
@@ -141,7 +194,7 @@ int convStr( char *outBuf, size_t *outLength, char *inBuf, size_t inLength, cons
 	iconv_t cd = iconv_open( sEnc, tEnc  );
 	 
 	int ires = (int)iconv( cd, &inBuf, &inLength, &outBuf, outLength );
-	 
+	 //printf("33in[%s] ---> out[%s][%d] \n", inBuf, outBuf, *outLength);
 	iconv_close(cd);
 	 
 	return ires;

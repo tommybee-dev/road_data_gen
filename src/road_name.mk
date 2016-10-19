@@ -10,7 +10,7 @@ TARGET  = ../BIN/$(EXE)
 CC=g++
 STRIP=strip
 
-LIB_SRCS = log.c log2.c scheme.c sqlite_util.c sqlite_bldg.c sqlite_addr.c http_downloader.c util.c road_name.c simplezip.c 
+LIB_SRCS = log.c log2.c scheme.c sqlite_util.c sqlite_rdcode.c sqlite_bldg.c sqlite_addr.c http_downloader.c util.c road_name.c simplezip.c 
 LIB_OBJS = $(LIB_SRCS:%.c=%.o)
 
 .SUFFIXES : .c .o 

@@ -28,6 +28,126 @@ typedef struct dispatch_table_s {
     int (*function)(int argc, char *argv[]);
 } dispatch_table_t;
 
+static int create_rdcode(int argc, char *argv[])
+{
+	char *table_name;
+	char *operation;
+	//const char *filename;
+	char sfile[FILENAME_MAX] = {0x00, };
+	char dbase[FILENAME_MAX] = {0x00, };
+	char sqlbuf[10240] = {0x00, };
+	
+	char *schmefile = sfile;
+	char *section3 = (char*)SECTION3;
+	char *database = dbase;
+	char *sql = sqlbuf;
+	
+	table_scheme_t table_scheme;
+	
+	load_ini(ini_location);
+	read_ini(section3, "SCHEME", NULL, &schmefile);
+	read_ini(section3, "DATA", NULL, &database);
+	
+	unload_ini();
+	
+	table_name = argv[1];
+	operation = argv[2];
+	
+	memset(&table_scheme, 0x00, sizeof(table_scheme));
+	//printf("---> size table_scheme[%d] \n", sizeof(table_scheme));	
+	
+	pre_load_scheme(schmefile, table_name, operation, &sql);
+	
+	log_print_error("%s \n", sql);
+	
+	strcpy(table_scheme.table_name, table_name);
+	strcpy(table_scheme.sql, sql);
+	strcpy(table_scheme.database, database);
+	
+	create_rdcode_table(&table_scheme);
+	
+	return 0;
+	
+}
+
+static int set_rdcode(int argc, char *argv[])
+{
+	char *table_name;
+	char *operation;
+	//const char *filename;
+	char sfile[FILENAME_MAX] = {0x00, };
+	char filepath[FILENAME_MAX] = {0x00, };
+	char dbase[FILENAME_MAX] = {0x00, };
+	char dndir[FILENAME_MAX] = {0x00, };
+	char pfix[FILENAME_MAX] = {0x00, };
+	char sfix[FILENAME_MAX] = {0x00, };
+	char sqlbuf[10240] = {0x00, };
+	
+	char *schmefile = sfile;
+	char *section1 = (char*)SECTION1;
+	char *section2 = (char*)SECTION2;
+	char *section3 = (char*)SECTION3;
+	char *database = dbase;
+	char *sql = sqlbuf;
+	int total_rows = 0;
+	
+	char *downdir = dndir;
+	char *rdtxt = pfix;
+	char *suffix = sfix;
+	
+	table_scheme_t table_scheme;
+	
+	load_ini(ini_location);
+	
+	read_ini(section1, "DOWN_PATH", NULL, &downdir);
+	
+	read_ini(section2, "ROAD_CODE", NULL, &rdtxt);
+	read_ini(section2, "GLOBAL_SUFFIX", NULL, &suffix);
+	
+	read_ini(section3, "SCHEME", NULL, &schmefile);
+	read_ini(section3, "DATA", NULL, &database);
+	
+	log_print_error(" database[%s] \n", database);
+	
+	unload_ini();
+	
+	table_name = argv[1];
+	operation = argv[2];
+	
+	memset(&table_scheme, 0x00, sizeof(table_scheme));
+	//printf("---> size table_scheme[%d] \n", sizeof(table_scheme));	
+	
+	pre_load_scheme(schmefile, table_name, operation, &sql);
+	
+	log_print_error("%s \n", sql);
+	
+	strcpy(table_scheme.table_name, table_name);
+	strcpy(table_scheme.sql, sql);
+	strcpy(table_scheme.database, database);
+	
+	//[./road_name_data/build_daejeontxt]
+	//http://www.isfull.com/bbs/board.php?bo_table=tb01&wr_id=1427
+	//<< strtok 사용 >>
+	//char* token = strtok_s(str, ",");
+	//while(token)
+	//{
+	//   token=strtok(0,",");
+	//}
+
+	//<< strtok_s 사용 >>
+	// token 파싱된앞문자열, context 남은문자열
+	sprintf(filepath, "%s/%s.%s", downdir, rdtxt, suffix);
+	log_print_error("filepath [%s]  \n", filepath);
+	
+	strcpy(table_scheme.txt_path, filepath);
+	total_rows = insrt_rdcode_table(&table_scheme);
+	log_print_error("Insert total [%d] rows  \n", total_rows);
+	
+	
+	return 0;
+}
+
+
 static int create_addr(int argc, char *argv[])
 {
 	char *table_name;
@@ -58,7 +178,7 @@ static int create_addr(int argc, char *argv[])
 	
 	pre_load_scheme(schmefile, table_name, operation, &sql);
 	
-	printf("---> out[%s] \n", sql);
+	log_print_error("%s \n", sql);
 	
 	strcpy(table_scheme.table_name, table_name);
 	strcpy(table_scheme.sql, sql);
@@ -111,8 +231,8 @@ static int set_addr(int argc, char *argv[])
 	read_ini(section3, "DATA", NULL, &database);
 	read_ini(section3, "AREA_NAMES", NULL, &areas);
 	
-	printf("---> database[%s] \n", database);
-	printf("---> areas[%s] \n", areas);
+	log_print_error("database[%s] \n", database);
+	//printf("---> areas[%s] \n", areas);
 	unload_ini();
 	
 	table_name = argv[1];
@@ -123,7 +243,7 @@ static int set_addr(int argc, char *argv[])
 	
 	pre_load_scheme(schmefile, table_name, operation, &sql);
 	
-	printf("---> out[%s] \n", sql);
+	log_print_error("%s \n", sql);
 	
 	strcpy(table_scheme.table_name, table_name);
 	strcpy(table_scheme.sql, sql);
@@ -145,11 +265,11 @@ static int set_addr(int argc, char *argv[])
 	char* token = strtok_s(areas, ",", &context);
 	
 	sprintf(filepath, "%s/%s%s.%s", downdir, prefix, token, suffix);
-	printf("---> filepath [%s]  \n", filepath);
+	log_print_error("filepath [%s]  \n", filepath);
 	
 	strcpy(table_scheme.txt_path, filepath);
 	total_rows = insrt_addr_table(&table_scheme);
-	printf("---> Insert total [%d] rows  \n", total_rows);
+	log_print_error("Insert total [%d] rows  \n", total_rows);
 	
 	while(token)
 	{
@@ -162,11 +282,11 @@ static int set_addr(int argc, char *argv[])
 			
 			sprintf(filepath, "%s/%s%s.%s", downdir, prefix, token, suffix);
 			//printf("---> area [%s]  \n", token);
-			printf("---> filepath [%s]  \n", filepath);
+			log_print_error("filepath [%s]  \n", filepath);
 			
 			strcpy(table_scheme.txt_path, filepath);
 			total_rows = insrt_addr_table(&table_scheme);
-			printf("---> Insert total [%d] rows  \n", total_rows);
+			log_print_error("Insert total [%d] rows  \n", total_rows);
 		}
 	}
 	
@@ -204,7 +324,7 @@ static int create_bldg(int argc, char *argv[])
 	
 	pre_load_scheme(schmefile, table_name, operation, &sql);
 	
-	printf("---> out[%s] \n", sql);
+	log_print_error("%s \n", sql);
 	
 	strcpy(table_scheme.table_name, table_name);
 	strcpy(table_scheme.sql, sql);
@@ -257,8 +377,8 @@ static int set_bldg(int argc, char *argv[])
 	read_ini(section3, "DATA", NULL, &database);
 	read_ini(section3, "AREA_NAMES", NULL, &areas);
 	
-	printf("---> database[%s] \n", database);
-	printf("---> areas[%s] \n", areas);
+	log_print_error("database[%s] \n", database);
+	//printf("---> areas[%s] \n", areas);
 	unload_ini();
 	
 	table_name = argv[1];
@@ -269,7 +389,7 @@ static int set_bldg(int argc, char *argv[])
 	
 	pre_load_scheme(schmefile, table_name, operation, &sql);
 	
-	printf("---> out[%s] \n", sql);
+	log_print_error("%s \n", sql);
 	
 	strcpy(table_scheme.table_name, table_name);
 	strcpy(table_scheme.sql, sql);
@@ -291,11 +411,11 @@ static int set_bldg(int argc, char *argv[])
 	char* token = strtok_s(areas, ",", &context);
 	
 	sprintf(filepath, "%s/%s%s.%s", downdir, prefix, token, suffix);
-	printf("---> filepath [%s]  \n", filepath);
+	log_print_error("filepath [%s]  \n", filepath);
 	
 	strcpy(table_scheme.txt_path, filepath);
 	total_rows = insrt_addr_table(&table_scheme);
-	printf("---> Insert total [%d] rows  \n", total_rows);
+	log_print_error("Insert total [%d] rows  \n", total_rows);
 	
 	while(token)
 	{
@@ -308,11 +428,11 @@ static int set_bldg(int argc, char *argv[])
 			
 			sprintf(filepath, "%s/%s%s.%s", downdir, prefix, token, suffix);
 			//printf("---> area [%s]  \n", token);
-			printf("---> filepath [%s]  \n", filepath);
+			log_print_error("filepath [%s]  \n", filepath);
 			
 			strcpy(table_scheme.txt_path, filepath);
 			total_rows = insrt_addr_table(&table_scheme);
-			printf("---> Insert total [%d] rows  \n", total_rows);
+			log_print_error("Insert total [%d] rows  \n", total_rows);
 		}
 	}
 	
@@ -324,6 +444,8 @@ dispatch_table_t dispatch_table[] = {
     { "bldg_s", 3, "set table data to sqlite database", "create building table to sqlite database", set_bldg },
     { "addr_c", 3, "address data table scheme", "create address data to the table of sqlite database", create_addr },
     { "addr_s", 3, "set table data to sqlite database", "create address table to sqlite database", set_addr },
+    { "rdcode_c", 3, "address data table scheme", "create address data to the table of sqlite database", create_rdcode },
+    { "rdcode_s", 3, "set table data to sqlite database", "create address table to sqlite database", set_rdcode },
 };
 
 static int
@@ -608,7 +730,7 @@ int main(int argc, char *argv[])
 		printf("url =--> [%s][%d][%d] \n", downurl, sizeof(downurl), strlen(downurl));
 	}
 
-	printf("parsing ... done ....%d, %d \n", arg, argc); 
+	//printf("parsing ... done ....%d, %d \n", arg, argc); 
 	
 	err = 0;
     while (arg < argc) {

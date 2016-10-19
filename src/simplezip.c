@@ -22,6 +22,9 @@
 
 #include <sys/types.h>
 #include <zip.h>
+
+#include "road_name.h"
+
 const char *prg;
  
 static void safe_create_dir(const char *dir)
@@ -37,7 +40,27 @@ static void safe_create_dir(const char *dir)
         }
     }
 }
- 
+
+//http://stackoverflow.com/questions/744766/how-to-compare-ends-of-strings-in-c
+int ends_with(const char *str, const char *suffix)
+{
+    char *dot = strrchr(str, '.');
+
+    if (NULL == dot) return 0;
+    return strcmp(dot, suffix) == 0;
+}
+
+int is_binary(const char *str)
+{
+	if(ends_with(str, ".pdf")) return 1;
+	else if(ends_with(str, ".exe")) return 1;
+	else if(ends_with(str, ".bin")) return 1;
+	else if(ends_with(str, ".xls")) return 1;
+				
+    return 0;
+}
+
+
 int smpl_unzip(char *zipname)
 {
     const char *archive;
@@ -60,22 +83,40 @@ int smpl_unzip(char *zipname)
     */
     
     archive = zipname;
-    
+
     if ((za = zip_open(archive, 0, &err)) == NULL) {
         zip_error_to_str(buf, sizeof(buf), err, errno);
         fprintf(stderr, "%s: can't open zip archive `%s': %s/n", prg,
             archive, buf);
         return 1;
     }
- 
+ 	
+ 	char tmpbuf[1024];
+ 	char *output_buf_ptr;
+ 	//const char *tmp;
+ 	output_buf_ptr = tmpbuf;
+ 	
     for (i = 0; i < zip_get_num_entries(za, 0); i++) {
         if (zip_stat_index(za, i, 0, &sb) == 0) {
-            printf("==================\n");
+            printf("\n==================\n");
+            
             len = strlen(sb.name);
-            printf("Name: [%s], ", sb.name);
+            
+           
             //printf("Size: [%llu], ", sb.size);
             printf("Size: [%lu], ", (unsigned long)sb.size);
             printf("mtime: [%u]\n", (unsigned int)sb.mtime);
+            
+            if(has_hangul((char*)sb.name))
+			{
+				sb.name = zip_get_name(za, i, ZIP_FL_ENC_RAW);
+				conv_utf8_kr((char*)sb.name, &output_buf_ptr);
+				
+				printf("Name: [%s], ", output_buf_ptr);
+			}
+			else
+				printf("Name: [%s], ", sb.name);
+			
             if (sb.name[len - 1] == '/') {
                 safe_create_dir(sb.name);
             } else {
@@ -84,10 +125,14 @@ int smpl_unzip(char *zipname)
                     fprintf(stderr, "boese, boese\n");
                     exit(100);
                 }
- 
-                fd = open(sb.name, O_RDWR | O_TRUNC | O_CREAT, 0644);
+ 				
+ 				if(is_binary(sb.name))
+					fd = open(sb.name, O_RDWR | O_TRUNC | O_CREAT | O_BINARY, 0644);
+				else
+                	fd = open(sb.name, O_RDWR | O_TRUNC | O_CREAT, 0644);
+                	
                 if (fd < 0) {
-                    fprintf(stderr, "boese, boese\n");
+                    fprintf(stderr, "boese, boese[%s]\n", sb.name);
                     exit(101);
                 }
  
@@ -101,6 +146,9 @@ int smpl_unzip(char *zipname)
                     write(fd, buf, len);
                     sum += len;
                 }
+                
+                printf("SUM ... [%llu] \n", sum);
+                
                 close(fd);
                 zip_fclose(zf);
             }

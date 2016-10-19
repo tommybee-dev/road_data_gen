@@ -102,7 +102,7 @@ int insrt_bldg_table(table_scheme_t *table_scheme)
     
     if((fp = (FILE*)fopen(table_scheme->txt_path, "r")) == NULL)
 	{
-		LOG_TRACE(LOG_ERROR, "Cannot open table file: %s\n",  table_scheme->txt_path);
+		log_print_error( "Cannot open table file: %s\n",  table_scheme->txt_path);
 		return 1;
     }
     
@@ -153,7 +153,7 @@ int insrt_bldg_table(table_scheme_t *table_scheme)
     
     if (rc != SQLITE_OK) {
         
-        LOG_TRACE(LOG_ERROR, "Cannot open database: %s\n", sqlite3_errmsg(db));
+        log_print_error( "Cannot open database: %s\n", sqlite3_errmsg(db));
         sqlite3_close(db);
         
         return 1;
@@ -456,7 +456,7 @@ int insrt_bldg_table(table_scheme_t *table_scheme)
 		close_iconv();
 		
 	} else {
-        LOG_TRACE(LOG_ERROR, "Failed to execute statement: %s\n", sqlite3_errmsg(db));
+        log_print_error( "Failed to execute statement: %s\n", sqlite3_errmsg(db));
     }
 	if(fp) { fflush(fp); fclose(fp); fp = NULL;}
 		

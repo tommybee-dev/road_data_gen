@@ -54,6 +54,7 @@ typedef struct table_scheme_s {
 //#define SKIP_HOSTNAME_VERIFICATION
 //#define WITH_CONV
 
+int has_hangul(char *input_text);
 int file_exists(const char *fname);
 void load_ini(const char *szFileName);
 void unload_ini();
@@ -77,10 +78,13 @@ int insrt_bldg_table(table_scheme_t *table_scheme);
 int create_addr_table(table_scheme_t *table_scheme);
 int insrt_addr_table(table_scheme_t *table_scheme);
 
+int create_rdcode_table(table_scheme_t *table_scheme);
+int insrt_rdcode_table(table_scheme_t *table_scheme);
 
 void trim(char * const a);
 bool bind_text(sqlite3 *db, sqlite3_stmt *stmt, int index, char *pstr, int sz);
 int conv_utf8_kr(char *szResult, char **output_buf_ptr);
+int conv_kr_utf8(char *inStr, char **output_buf_ptr);
 
 void open_iconv(const char *src, const char *dest);
 int iconv_utf8_kr(char *inStr, char **output_buf_ptr);
