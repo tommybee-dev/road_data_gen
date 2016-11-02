@@ -1,4 +1,4 @@
-With program, you can generates korean street based address data from the official site to the database
+With this program, you can generates korean street based address data from the official site to the database
 You might check the bin directory, there are several batch files of windows.
 
 Some conditions must be proceeded prior to execute the programs in the bin directory.
