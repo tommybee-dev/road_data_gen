@@ -3,6 +3,10 @@
 
 
 void pre_load_scheme(char *filename, char *elem, char *subelem, char **text);
+
+void load_depth2(char *filename, char *elem, char *subelem, char **text);
+void load_depth1(char *filename, char *elem, char **text);
+
 int smpl_unzip(char *zipname);
 
 #ifdef __cplusplus
@@ -20,6 +24,7 @@ extern "C"
 #define SECTION1 "URLINFO"
 #define SECTION2 "FILEINFO"
 #define SECTION3 "DATABASE"
+#define SECTION4 "ORAINFO"
 
 #define ROAD_DOWNLOAD        1
 #define ROAD_UNZIP           2
@@ -44,6 +49,14 @@ typedef struct table_scheme_s {
     char sql[10240];
 } table_scheme_t;
 
+typedef struct table_move_s {
+    char sqlite_dbase[FILENAME_MAX];
+    char tns[FILENAME_MAX];
+    char user[512];
+    char passwd[512];
+    char select_buf[10240];
+    char insert_buf[10240];
+} table_move_t;
 
 #define DEFULT_DB_CHARSET      "ISO8859-1"
 
@@ -91,6 +104,10 @@ int iconv_utf8_kr(char *inStr, char **output_buf_ptr);
 void close_iconv();
 
 void log_print_error(const char* message, ...);
+
+
+int ora_test_road (void);
+int add_addr (table_move_t *table_scheme);
 
 #ifdef __cplusplus
 }

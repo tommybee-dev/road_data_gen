@@ -1,0 +1,149 @@
+<road_name_scheme>
+	<tb_addr_map_tmp2>
+		<table>
+			TB_ADDR_MAP_TMP2
+		</table>
+		<create>
+			CREATE TABLE IF NOT EXISTS TB_ADDR_MAP_TMP (	
+				BJD_CD		VARCHAR2(10),
+				SIDO_NM		VARCHAR2(50),
+				SIGG_NM		VARCHAR2(50),
+				EMD_NM		VARCHAR2(50),
+				RI_NM		VARCHAR2(50),
+				SAN_CK		VARCHAR2(1),
+				JIBUN_MAIN	VARCHAR2(20),
+				JIBUN_SUB	VARCHAR2(20),
+				RD_CD		VARCHAR2(255),
+				RD_NM		VARCHAR2(255),
+				GRND_CK		VARCHAR2(1),
+				BLDNO_MAIN	VARCHAR2(20),
+				BLDNO_SUB	VARCHAR2(20),
+				BLD_NM		VARCHAR2(50),
+				BLD_DETAIL	VARCHAR2(100),
+				BLD_MNGNO	VARCHAR2(50),
+				EMD_SERIAL	VARCHAR2(2),
+				HJD_CD		VARCHAR2(10),
+				HJD_NM		VARCHAR2(50),
+				ZIP_CODE	VARCHAR2(6),
+				COL21		VARCHAR2(3),
+				COL22		VARCHAR2(40),
+				COL23		VARCHAR2(2),
+				COL24		VARCHAR2(8),
+				COL25		VARCHAR2(25),
+				COL26		VARCHAR2(200),
+				GONGDONG_YN	VARCHAR2(1),
+				COL28		VARCHAR2(5),
+				COL29		VARCHAR2(1),
+				COL30		VARCHAR2(15),
+				COL31		VARCHAR2(15)  
+			);
+		</create>
+		<insert>
+			INSERT INTO TB_ADDR_MAP_TMP 
+			(
+				BJD_CD, SIDO_NM, SIGG_NM, EMD_NM, RI_NM, 
+				SAN_CK, JIBUN_MAIN, JIBUN_SUB, RD_CD, RD_NM,
+				GRND_CK, BLDNO_MAIN, BLDNO_SUB, BLD_NM, BLD_DETAIL,
+				BLD_MNGNO, EMD_SERIAL, HJD_CD, HJD_NM, ZIP_CODE,
+				COL21, COL22, COL23, COL24, COL25,
+				COL26, GONGDONG_YN, COL28, COL29,COL30,
+				COL31
+			) VALUES
+			(
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?, 
+				?
+			);
+		</insert>
+	</tb_addr_map_tmp2>
+	
+	<tb_addr_map_temp_ref_jibun>
+		<table>
+			TB_ADDR_MAP_TEMP_REF_JIBUN
+		</table>
+		<create>
+			CREATE TABLE IF NOT EXISTS TB_ADDR_MAP_TEMP_REF_JIBUN (	
+				BJD_CD	VARCHAR2(10),
+				SIDO_NM	VARCHAR2(40),
+				SIGG_NM	VARCHAR2(40),
+				EMD_NM	VARCHAR2(40),
+				RI_NM	VARCHAR2(40),
+				SAN_CK	VARCHAR2(1),
+				JIBUN_MAIN	VARCHAR2(4),
+				JIBUN_SUB	VARCHAR2(4),
+				RD_CD	VARCHAR2(12),
+				GRND_CK	VARCHAR2(1),
+				BLDNO_MAIN	VARCHAR2(5),
+				BLDNO_SUB	VARCHAR2(5),
+				EMD_SERIAL	VARCHAR2(10),
+				MOVE_CODE	VARCHAR2(2)
+			       
+			);
+		</create>
+		<insert>
+			INSERT INTO TB_ADDR_MAP_TEMP_REF_JIBUN 
+			(
+				BJD_CD, SIDO_NM, SIGG_NM,
+				EMD_NM, RI_NM, SAN_CK,
+				JIBUN_MAIN, JIBUN_SUB, RD_CD, 
+				GRND_CK, BLDNO_MAIN, BLDNO_SUB,
+				EMD_SERIAL, MOVE_CODE
+			) VALUES
+			(
+				?, ?, ?, 
+				?, ?, ?, 
+				?, ?, ?, 
+				?, ?, ?, 
+				?, ?
+			);
+		</insert>
+	</tb_addr_map_temp_ref_jibun>
+	<tb_addr_map_temp_rd_cd>
+		<table>
+			TB_ADDR_MAP_TEMP_RD_CD
+		</table>
+		<create>
+			CREATE TABLE IF NOT EXISTS TB_ADDR_MAP_TEMP_RD_CD (	
+				SIGG_CD	    VARCHAR2(5),
+				RD_CD	    VARCHAR2(7),
+				RD_NM	    VARCHAR2(80),
+				RD_ENG	    VARCHAR2(80),
+				EMD_SER	    VARCHAR2(2),
+				SIDO_NM	    VARCHAR2(40),
+				SIGG_NM	    VARCHAR2(40),
+				EMD_GUBUN	VARCHAR2(1),
+				EMD_CD	    VARCHAR2(3),
+				EMD_NM	    VARCHAR2(40),
+				UPPER_RD_CD	VARCHAR2(7),
+				UPPER_RD_NM	VARCHAR2(80),
+				USE_YN	    VARCHAR2(1),
+				CHG_REASON	VARCHAR2(1),
+				CHG_INFO	VARCHAR2(14),
+				SIDO_ENG	VARCHAR2(40),
+				SIGG_ENG	VARCHAR2(40),
+				EMD_ENG	    VARCHAR2(40),
+				ORIG_DATE	VARCHAR2(8),
+				EXP_DATE	VARCHAR2(8)
+			);
+		</create>
+		<insert>
+			INSERT INTO TB_ADDR_MAP_TEMP_RD_CD 
+			(
+				SIGG_CD,RD_CD,RD_NM,RD_ENG,EMD_SER,
+				SIDO_NM,SIGG_NM,EMD_GUBUN,EMD_CD,EMD_NM,
+				UPPER_RD_CD,UPPER_RD_NM,USE_YN,CHG_REASON,CHG_INFO,
+				SIDO_ENG,SIGG_ENG,EMD_ENG,ORIG_DATE,EXP_DATE
+			) VALUES
+			(
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?, 
+				?, ?, ?, ?, ?
+			);
+		</insert>
+	</tb_addr_map_temp_rd_cd>
+</road_name_scheme>

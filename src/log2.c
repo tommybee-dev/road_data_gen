@@ -84,13 +84,13 @@ void log_print_error(const char* message, ...)
 	log_error++;
 
 	check_init();
-	fprintf(stderr, "Count %d: ", log_error);
+	//fprintf(stderr, "Count %d: ", log_error);
 	vfprintf(stderr, message, args);
 	va_end(args);
 
 	va_start(args, message); /* Must reset variable arguments so that they can be read again */
 	fprintf(log_stream, "LINE %d: ", __LINE__);
-	fprintf(log_stream, "Count %d: ", log_error);
+	//fprintf(log_stream, "Count %d: ", log_error);
 	vfprintf(log_stream, message, args);
 
 	va_end(args);

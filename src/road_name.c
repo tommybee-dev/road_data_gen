@@ -28,10 +28,90 @@ typedef struct dispatch_table_s {
     int (*function)(int argc, char *argv[]);
 } dispatch_table_t;
 
+//http://mwultong.blogspot.com/2006/10/c-string-replace-all.html
+static int move_data_ora(int argc, char *argv[])
+{
+	char *table_name;
+	char *user;
+	char *passwd;
+	char *tns_id; //[] = "tns";
+	char *sel_id; //[] = "select";
+	char *ins_id; //[] = "insert";
+	
+	char sfile[FILENAME_MAX] = {0x00, };
+	char dbase[FILENAME_MAX] = {0x00, };
+	char tnsbuf[1024] = {0x00, };
+	char sbuf[1024] = {0x00, };
+	char ibuf[1024] = {0x00, };
+	
+	char ubuf[512] = {0x00, };
+	char pbuf[512] = {0x00, };
+	
+	char *schmefile = sfile;
+	char *section4 = (char*)SECTION4;
+	char *database = dbase;
+	char *tns = tnsbuf;
+	char *sel_buf = sbuf;
+	char *ins_buf = ibuf;
+	
+	user = ubuf;
+	passwd = pbuf;
+	
+	printf("%s \n " , ini_location);
+	table_move_t table_scheme;
+	
+	load_ini(ini_location);
+
+	read_ini(section4, "SCHEME", NULL, &schmefile);
+	read_ini(section4, "DATA", NULL, &database);
+	read_ini(section4, "USER", NULL, &user);
+	read_ini(section4, "PASSWD", NULL, &passwd);
+
+	log_print_error("schmefile[%s] \n", schmefile);
+	//printf("---> areas[%s] \n", areas);
+	unload_ini();
+	
+	table_name = argv[0];
+	tns_id = argv[1];
+	sel_id = argv[2];
+	ins_id = argv[3];
+	
+	log_print_error("%s \n", table_name);
+	
+	memset(&table_scheme, 0x00, sizeof(table_scheme));
+	//printf("---> size table_scheme[%d] \n", sizeof(table_scheme));	
+	
+	load_depth1(schmefile, tns_id, &tns);
+	//log_print_error("%s \n", tns);
+	
+	load_depth2(schmefile, table_name, sel_id, &sel_buf);
+	//log_print_error("%s \n", sel_buf);
+	
+	load_depth2(schmefile, table_name, ins_id, &ins_buf);
+	//log_print_error("%s \n", ins_buf);
+	
+	memset(table_scheme.tns, 0x00, sizeof(table_scheme.tns));
+	
+	sprintf(table_scheme.tns, "%s/%s@%s", user, passwd, tns);
+	
+	//strcpy(table_scheme.tns, tns);
+	strcpy(table_scheme.sqlite_dbase, database);
+	strcpy(table_scheme.select_buf, sel_buf);
+	strcpy(table_scheme.insert_buf, ins_buf);
+	strcpy(table_scheme.user, user);
+	strcpy(table_scheme.passwd, passwd);
+	
+	
+	add_addr(&table_scheme);
+	
+	return 0;
+}
+
 static int create_rdcode(int argc, char *argv[])
 {
 	char *table_name;
 	char *operation;
+	
 	//const char *filename;
 	char sfile[FILENAME_MAX] = {0x00, };
 	char dbase[FILENAME_MAX] = {0x00, };
@@ -445,7 +525,8 @@ dispatch_table_t dispatch_table[] = {
     { "addr_c", 3, "address data table scheme", "create address data to the table of sqlite database", create_addr },
     { "addr_s", 3, "set table data to sqlite database", "create address table to sqlite database", set_addr },
     { "rdcode_c", 3, "address data table scheme", "create address data to the table of sqlite database", create_rdcode },
-    { "rdcode_s", 3, "set table data to sqlite database", "create address table to sqlite database", set_rdcode },
+    { "rdcode_s", 3, "set table data to sqlite database", "set address table to sqlite database", set_rdcode },
+    { "move_to_ora", 4, "move sqlite table data to oracle database", "move to oracle database", move_data_ora },
 };
 
 static int
@@ -605,7 +686,7 @@ int main(int argc, char *argv[])
 	
 	if (argc < 2) usage(prg, "too few arguments");
 	
-	while ((c=getopt(argc, argv, "duhso")) != -1) {
+	while ((c=getopt(argc, argv, "duhsot")) != -1) {
 		switch (c) {
 			case 'd':
 			    flags |= ROAD_DOWNLOAD;
@@ -673,62 +754,59 @@ int main(int argc, char *argv[])
 	
 	//pthread_mutex_lock(&mutex); // 잠금을 생성한다.
 	
-	if(source_type != SOURCE_TYPE_TEST)
-	{
-		downpath = dpath;
-		downurl = durl;
+	
+	downpath = dpath;
+	downurl = durl;
+	
+	//outfilename = getIniValue(SECTION1, "OUT_FILE", 1);
+	//getIniValue(SECTION1, "OUT_FILE", &outfilename);
+	read_ini(section1, "OUT_FILE", NULL, &outfilename);
+	//printf("file =--> [%s][%d][%d] \n", outfilename, sizeof(outfilename), strlen(outfilename));
+	
+	//getIniValue(SECTION1, "DOWN_URL", &downurl); 
+	read_ini(section1, "DOWN_URL", NULL, &downurl);
+	//printf("url =--> [%s][%d][%d] \n", downurl, sizeof(downurl), strlen(downurl));
+	
+	read_ini(SECTION1, "DOWN_PATH", NULL, &downpath);
+	sprintf(path, "%s/%s", downpath, outfilename);
+	
+	read_ini(section3, "SCHEME", NULL, &schmefile);
+	//printf("SCHEME/%s \n", schmefile);
+	
+	
+	switch (source_type) {
+		case SOURCE_TYPE_NONE:
+			download(path, downurl, downpath, outfilename);
+			break;
 		
-		//outfilename = getIniValue(SECTION1, "OUT_FILE", 1);
-		//getIniValue(SECTION1, "OUT_FILE", &outfilename);
-		read_ini(section1, "OUT_FILE", NULL, &outfilename);
-		//printf("file =--> [%s][%d][%d] \n", outfilename, sizeof(outfilename), strlen(outfilename));
+		case SOURCE_TYPE_DOWNLOAD:
+			download(path, downurl, downpath, outfilename);
+			break;
 		
-		//getIniValue(SECTION1, "DOWN_URL", &downurl); 
-		read_ini(section1, "DOWN_URL", NULL, &downurl);
-		//printf("url =--> [%s][%d][%d] \n", downurl, sizeof(downurl), strlen(downurl));
-		
-		read_ini(SECTION1, "DOWN_PATH", NULL, &downpath);
-		sprintf(path, "%s/%s", downpath, outfilename);
-		
-		read_ini(section3, "SCHEME", NULL, &schmefile);
-		//printf("SCHEME/%s \n", schmefile);
-		
-		
-		switch (source_type) {
-			case SOURCE_TYPE_NONE:
-				download(path, downurl, downpath, outfilename);
-				break;
-			
-			case SOURCE_TYPE_DOWNLOAD:
-				download(path, downurl, downpath, outfilename);
-				break;
-			
-			case SOURCE_TYPE_UNZIP: {
-				unzipRoadData(downpath, path, outfilename);
-				break;
-			}
-			case SOURCE_TYPE_SQLITE:
-				parseScheme(schmefile);
-				break;
-			
-			case SOURCE_TYPE_ORACLE:
-				break;
-			
-			case SOURCE_TYPE_TEST: {
-				break;
-			}
+		case SOURCE_TYPE_UNZIP: {
+			unzipRoadData(downpath, path, outfilename);
+			break;
 		}
-	} 
-	else
-	{
-		/*char *url = "https://www.juso.go.kr/addrlink/addressBuildDev.do";*/
-		strcpy( downurl, 
-			"https://www.juso.go.kr/dn.do?reqType=ALLRDNM&fileName=201608전체주소(도로명코드)_전체분.zip&realFileName=201608ALLRDNM00.zip&regYmd=2016&ctprvnCd=00&gubun=RDNM&stdde=201608");
-		strcpy(filename, "201608전체주소(도로명코드)_전체분.zip");
+		case SOURCE_TYPE_SQLITE:
+			parseScheme(schmefile);
+			break;
 		
-		printf("file =--> [%s][%d][%d] \n", outfilename, sizeof(outfilename), strlen(outfilename));
-		printf("url =--> [%s][%d][%d] \n", downurl, sizeof(downurl), strlen(downurl));
+		case SOURCE_TYPE_ORACLE:
+			break;
+		
+		case SOURCE_TYPE_TEST: {
+			/*char *url = "https://www.juso.go.kr/addrlink/addressBuildDev.do";*/
+			//strcpy( downurl, 
+			//	"https://www.juso.go.kr/dn.do?reqType=ALLRDNM&fileName=201608전체주소(도로명코드)_전체분.zip&realFileName=201608ALLRDNM00.zip&regYmd=2016&ctprvnCd=00&gubun=RDNM&stdde=201608");
+			//strcpy(filename, "201608전체주소(도로명코드)_전체분.zip");
+			//
+			//printf("file =--> [%s][%d][%d] \n", outfilename, sizeof(outfilename), strlen(outfilename));
+			//printf("url =--> [%s][%d][%d] \n", downurl, sizeof(downurl), strlen(downurl));
+			ora_test_road ();
+			break;
+		}
 	}
+	
 
 	//printf("parsing ... done ....%d, %d \n", arg, argc); 
 	

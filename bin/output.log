@@ -241,3 +241,467 @@ LINE 92: Count 3: filepath [./road_name_data/road_code_total.txt]
 LINE 92: Count 4: 
 The statement has 20 wildcards
 LINE 92: Count 5: Insert total [353719] rows  
+output.log
+
+LINE 92: Count 1: schmefile[road_name_oracle.xml] 
+output.log
+
+LINE 92: Count 1: schmefile[road_name_oracle.xml] 
+output.log
+
+LINE 92: Count 1: schmefile[road_name_oracle.xml] 
+output.log
+
+LINE 92: Count 1: schmefile[road_name_oracle.xml] 
+output.log
+
+LINE 92: Count 1: schmefile[road_name_oracle.xml] 
+LINE 92: Count 2: ( DESCRIPTION= ( ADDRESS_LIST= ( ADDRESS= (PROTOCOL=TCP) (HOST=168.154.182.72) (PORT=1521) ) ) ( CONNECT_DATA= (SERVER=DEDICATED) (SERVICE_NAME=ECS) ) ) 
+output.log
+
+LINE 92: Count 1: schmefile[road_name_oracle.xml] 
+LINE 92: Count 2: ( DESCRIPTION= ( ADDRESS_LIST= ( ADDRESS= (PROTOCOL=TCP) (HOST=168.154.182.72) (PORT=1521) ) ) ( CONNECT_DATA= (SERVER=DEDICATED) (SERVICE_NAME=ECS) ) ) 
+output.log
+
+LINE 92: Count 1: schmefile[road_name_oracle.xml] 
+LINE 92: Count 2: insert 
+LINE 92: Count 3: ( DESCRIPTION= ( ADDRESS_LIST= ( ADDRESS= (PROTOCOL=TCP) (HOST=168.154.182.72) (PORT=1521) ) ) ( CONNECT_DATA= (SERVER=DEDICATED) (SERVICE_NAME=ECS) ) ) 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+LINE 92: ( DESCRIPTION= ( ADDRESS_LIST= ( ADDRESS= (PROTOCOL=TCP) (HOST=168.154.182.72) (PORT=1521) ) ) ( CONNECT_DATA= (SERVER=DEDICATED) (SERVICE_NAME=ECS) ) ) 
+LINE 92: SELECT BJD_CD, SIDO_NM, SIGG_NM, EMD_NM, RI_NM, SAN_CK, JIBUN_MAIN, JIBUN_SUB, RD_CD, GRND_CK, BLDNO_MAIN, BLDNO_SUB, EMD_SERIAL, MOVE_CODE FROM TB_ADDR_MAP_TEMP_REF_JIBUN; 
+LINE 92: INSERT INTO TB_ADDR_MAP_TEMP_REF_JIBUN ( BJD_CD, SIDO_NM, SIGG_NM, EMD_NM, RI_NM, SAN_CK, JIBUN_MAIN, JIBUN_SUB, RD_CD, GRND_CK, BLDNO_MAIN, BLDNO_SUB, EMD_SERIAL, MOVE_CODE ) VALUES ( :BJD_CD, :SIDO_NM, :SIGG_NM, :EMD_NM, :RI_NM, :SAN_CK, :JIBUN_MAIN, :JIBUN_SUB, :RD_CD, :GRND_CK, :BLDNO_MAIN, :BLDNO_SUB, :EMD_SERIAL, :MOVE_CODE ); 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+LINE 92: ( DESCRIPTION= ( ADDRESS_LIST= ( ADDRESS= (PROTOCOL=TCP) (HOST=168.154.182.72) (PORT=1521) ) ) ( CONNECT_DATA= (SERVER=DEDICATED) (SERVICE_NAME=ECS) ) ) 
+LINE 92: SELECT BJD_CD, SIDO_NM, SIGG_NM, EMD_NM, RI_NM, SAN_CK, JIBUN_MAIN, JIBUN_SUB, RD_CD, GRND_CK, BLDNO_MAIN, BLDNO_SUB, EMD_SERIAL, MOVE_CODE FROM TB_ADDR_MAP_TEMP_REF_JIBUN; 
+LINE 92: INSERT INTO TB_ADDR_MAP_TEMP_REF_JIBUN ( BJD_CD, SIDO_NM, SIGG_NM, EMD_NM, RI_NM, SAN_CK, JIBUN_MAIN, JIBUN_SUB, RD_CD, GRND_CK, BLDNO_MAIN, BLDNO_SUB, EMD_SERIAL, MOVE_CODE ) VALUES ( :BJD_CD, :SIDO_NM, :SIGG_NM, :EMD_NM, :RI_NM, :SAN_CK, :JIBUN_MAIN, :JIBUN_SUB, :RD_CD, :GRND_CK, :BLDNO_MAIN, :BLDNO_SUB, :EMD_SERIAL, :MOVE_CODE ); 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: CREATE TABLE IF NOT EXISTS TB_ADDR_MAP_TEMP_REF_JIBUN ( BJD_CD VARCHAR2(10), SIDO_NM VARCHAR2(40), SIGG_NM VARCHAR2(40), EMD_NM VARCHAR2(40), RI_NM VARCHAR2(40), SAN_CK VARCHAR2(1), JIBUN_MAIN VARCHAR2(4), JIBUN_SUB VARCHAR2(4), RD_CD VARCHAR2(12), GRND_CK VARCHAR2(1), BLDNO_MAIN VARCHAR2(5), BLDNO_SUB VARCHAR2(5), EMD_SERIAL VARCHAR2(10), MOVE_CODE VARCHAR2(2) ); 
+output.log
+
+LINE 92: CREATE TABLE IF NOT EXISTS TB_ADDR_MAP_TMP ( BJD_CD VARCHAR2(10), SIDO_NM VARCHAR2(50), SIGG_NM VARCHAR2(50), EMD_NM VARCHAR2(50), RI_NM VARCHAR2(50), SAN_CK VARCHAR2(1), JIBUN_MAIN VARCHAR2(20), JIBUN_SUB VARCHAR2(20), RD_CD VARCHAR2(255), RD_NM VARCHAR2(255), GRND_CK VARCHAR2(1), BLDNO_MAIN VARCHAR2(20), BLDNO_SUB VARCHAR2(20), BLD_NM VARCHAR2(50), BLD_DETAIL VARCHAR2(100), BLD_MNGNO VARCHAR2(50), EMD_SERIAL VARCHAR2(2), HJD_CD VARCHAR2(10), HJD_NM VARCHAR2(50), ZIP_CODE VARCHAR2(6), COL21 VARCHAR2(3), COL22 VARCHAR2(40), COL23 VARCHAR2(2), COL24 VARCHAR2(8), COL25 VARCHAR2(25), COL26 VARCHAR2(200), GONGDONG_YN VARCHAR2(1), COL28 VARCHAR2(5), COL29 VARCHAR2(1), COL30 VARCHAR2(15), COL31 VARCHAR2(15) ); 
+output.log
+
+LINE 92: CREATE TABLE IF NOT EXISTS TB_ADDR_MAP_TEMP_RD_CD ( SIGG_CD VARCHAR2(5), RD_CD VARCHAR2(7), RD_NM VARCHAR2(80), RD_ENG VARCHAR2(80), EMD_SER VARCHAR2(2), SIDO_NM VARCHAR2(40), SIGG_NM VARCHAR2(40), EMD_GUBUN VARCHAR2(1), EMD_CD VARCHAR2(3), EMD_NM VARCHAR2(40), UPPER_RD_CD VARCHAR2(7), UPPER_RD_NM VARCHAR2(80), USE_YN VARCHAR2(1), CHG_REASON VARCHAR2(1), CHG_INFO VARCHAR2(14), SIDO_ENG VARCHAR2(40), SIGG_ENG VARCHAR2(40), EMD_ENG VARCHAR2(40), ORIG_DATE VARCHAR2(8), EXP_DATE VARCHAR2(8) ); 
+output.log
+
+LINE 92: database[road_name.db] 
+LINE 92: INSERT INTO TB_ADDR_MAP_TEMP_REF_JIBUN ( BJD_CD, SIDO_NM, SIGG_NM, EMD_NM, RI_NM, SAN_CK, JIBUN_MAIN, JIBUN_SUB, RD_CD, GRND_CK, BLDNO_MAIN, BLDNO_SUB, EMD_SERIAL, MOVE_CODE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ); 
+LINE 92: filepath [./road_name_data/jibun_daejeon.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [11281] rows  
+LINE 92: filepath [./road_name_data/jibun_incheon.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [30746] rows  
+LINE 92: filepath [./road_name_data/jibun_ulsan.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [17998] rows  
+LINE 92: filepath [./road_name_data/jibun_gangwon.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [199608] rows  
+LINE 92: filepath [./road_name_data/jibun_jeju.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [14155] rows  
+LINE 92: filepath [./road_name_data/jibun_busan.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [42299] rows  
+LINE 92: filepath [./road_name_data/jibun_gwangju.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [15116] rows  
+LINE 92: filepath [./road_name_data/jibun_jeonbuk.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [111616] rows  
+LINE 92: filepath [./road_name_data/jibun_chungbuk.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [84941] rows  
+LINE 92: filepath [./road_name_data/jibun_gyeongbuk.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [125967] rows  
+LINE 92: filepath [./road_name_data/jibun_jeonnam.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [359389] rows  
+LINE 92: filepath [./road_name_data/jibun_chungnam.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [218660] rows  
+LINE 92: filepath [./road_name_data/jibun_gyeongnam.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [366882] rows  
+LINE 92: filepath [./road_name_data/jibun_sejong.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [4335] rows  
+LINE 92: filepath [./road_name_data/jibun_gyunggi.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [242494] rows  
+LINE 92: filepath [./road_name_data/jibun_seoul.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [83957] rows  
+LINE 92: filepath [./road_name_data/jibun_daegu.txt]  
+LINE 92: 
+The statement has 14 wildcards
+LINE 92: Insert total [21074] rows  
+output.log
+
+LINE 92: database[road_name.db] 
+LINE 92: INSERT INTO TB_ADDR_MAP_TMP ( BJD_CD, SIDO_NM, SIGG_NM, EMD_NM, RI_NM, SAN_CK, JIBUN_MAIN, JIBUN_SUB, RD_CD, RD_NM, GRND_CK, BLDNO_MAIN, BLDNO_SUB, BLD_NM, BLD_DETAIL, BLD_MNGNO, EMD_SERIAL, HJD_CD, HJD_NM, ZIP_CODE, COL21, COL22, COL23, COL24, COL25, COL26, GONGDONG_YN, COL28, COL29,COL30, COL31 ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ); 
+LINE 92: filepath [./road_name_data/build_daejeon.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [148801] rows  
+LINE 92: filepath [./road_name_data/build_incheon.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [257037] rows  
+LINE 92: filepath [./road_name_data/build_ulsan.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [161574] rows  
+LINE 92: filepath [./road_name_data/build_gangwon.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [567057] rows  
+LINE 92: filepath [./road_name_data/build_jeju.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [239338] rows  
+LINE 92: filepath [./road_name_data/build_busan.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [426180] rows  
+LINE 92: filepath [./road_name_data/build_gwangju.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [182035] rows  
+LINE 92: filepath [./road_name_data/build_jeonbuk.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [817165] rows  
+LINE 92: filepath [./road_name_data/build_chungbuk.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [604146] rows  
+LINE 92: filepath [./road_name_data/build_gyeongbuk.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [1417711] rows  
+LINE 92: filepath [./road_name_data/build_jeonnam.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [1136659] rows  
+LINE 92: filepath [./road_name_data/build_chungnam.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [848930] rows  
+LINE 92: filepath [./road_name_data/build_gyeongnam.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [1310398] rows  
+LINE 92: filepath [./road_name_data/build_sejong.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [55435] rows  
+LINE 92: filepath [./road_name_data/build_gyunggi.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [1585790] rows  
+LINE 92: filepath [./road_name_data/build_seoul.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [654234] rows  
+LINE 92: filepath [./road_name_data/build_daegu.txt]  
+LINE 92: 
+The statement has 31 wildcards
+LINE 92: Insert total [276126] rows  
+output.log
+
+LINE 92:  database[road_name.db] 
+LINE 92: INSERT INTO TB_ADDR_MAP_TEMP_RD_CD ( SIGG_CD,RD_CD,RD_NM,RD_ENG,EMD_SER, SIDO_NM,SIGG_NM,EMD_GUBUN,EMD_CD,EMD_NM, UPPER_RD_CD,UPPER_RD_NM,USE_YN,CHG_REASON,CHG_INFO, SIDO_ENG,SIGG_ENG,EMD_ENG,ORIG_DATE,EXP_DATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ); 
+LINE 92: filepath [./road_name_data/road_code_total.txt]  
+LINE 92: 
+The statement has 20 wildcards
+LINE 92: Insert total [353719] rows  
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
+output.log
+
+LINE 92: schmefile[road_name_oracle.xml] 
+LINE 92: tb_addr_map_temp_ref_jibun 
