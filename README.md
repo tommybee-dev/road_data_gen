@@ -14,7 +14,9 @@ Msys2 + MinGW + gcc will be the best as same env. as my case.
 Third, here are my system variables
 
 SET ORACLE_HOME=C:\DEV\COMP\OracleClient32
+
 SET PATH=.;%PATH%;%ORACLE_HOME%;%ORACLE_HOME%\sdk:.
+
 SET NLS_LANG=AMERICAN_AMERICA.KO16KSC5601
 
 The ORACLE_HOME variable must be right directory in which oracle instant client is installed.
