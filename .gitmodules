@@ -1,0 +1,3 @@
+[submodule "dynamic_proc"]
+	path = dynamic_proc
+	url = https://github.com/tommybee/dynamic_proc.git
